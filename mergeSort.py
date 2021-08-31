@@ -28,7 +28,8 @@ def merge(firstHalf: list, secondHalf: list, fullList: list):
 
 
 if __name__ == '__main__':
-    myList = [randint(1,10) for x in range(11)]
+    size = input("Enter the size of the list to sort: ")
+    myList = [randint(1,int(size)) for x in range(int(size))]
     print(myList)
     mergeSort(myList)
     print(myList)
