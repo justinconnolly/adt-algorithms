@@ -1,7 +1,6 @@
-from typing import List
 from random import randint
 
-def mergeSort(fullList: List):
+def mergeSort(fullList: list):
     if len(fullList) <= 1:
         return
     firstHalf = list(fullList[0:len(fullList)//2])
@@ -10,7 +9,7 @@ def mergeSort(fullList: List):
     mergeSort(secondHalf)
     merge(firstHalf, secondHalf, fullList)
 
-def merge(firstHalf: list, secondHalf: List, fullList: List):
+def merge(firstHalf: list, secondHalf: list, fullList: list):
     firstCounter = 0
     secondCounter = 0
     for index, value in enumerate(fullList):
