@@ -1,2 +1,2 @@
 # adt-algorithms
-Implementing some ADT/Algo in Python as practice and to prep for TAing the class
+Implementing some ADT/Algo in Python as practice and prep for TAing COMP2402
