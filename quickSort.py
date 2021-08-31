@@ -6,7 +6,7 @@ def quick_sort(a: int):
 def quickSort(myList: list, start: int, end: int):
     if end <= 1:
         return
-    pivot = myList[start + randint(0,end - 1)] #pivot
+    pivot = myList[start + randint(0,end - 1)]
     p = start - 1
     j = start
     q = start + end
