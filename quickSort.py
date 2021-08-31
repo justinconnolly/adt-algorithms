@@ -38,4 +38,4 @@ if __name__ == '__main__':
     for index, value in enumerate(myList):
         if  index > 0 and value < myList[index - 1]:
             print("ERROR")
-            print(f"{index}:{value}")
+            print(f"{index}:{value} < {index - 1}:{myList[index - 1]}")
