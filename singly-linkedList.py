@@ -87,12 +87,13 @@ class linkedList:
 
         self.length -= 1
 
+        node = self.head
+        prevNode = node
+
         if index == 0:
             self.head = node.next
             node.next = None
             return
-        node = self.head
-        prevNode = node
 
         for i in range(index):
             prevNode = node
