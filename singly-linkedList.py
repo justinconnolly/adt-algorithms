@@ -26,7 +26,8 @@ class linkedList:
         return " -> ".join(nodes)
 
     def push(self, value):
-        self.length += 1
+        self.insert(0,value)
+        return
 
         if self.head is None:
             self.head = Node(value)
@@ -45,6 +46,9 @@ class linkedList:
         self.tail = newNode
 
     def pop(self):
+        self.remove(0)
+        return
+
         if self.length < 1:
             return "Linked List is empty"
 
@@ -81,6 +85,9 @@ class linkedList:
         prevNode.next = newNode
     
     def remove(self, index):
+        if self.length < 1:
+            return "Linked List is empty"
+            
         if index >= self.length:
             print(f"Index {index} out of bounds (list length is {self.length})")
             return 
@@ -113,4 +120,6 @@ if __name__ == '__main__':
     llist.insert(9,10)
     print(llist)
     llist.remove(9)
+    print(llist)
+    llist.push(100)
     print(llist)
