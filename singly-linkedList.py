@@ -86,7 +86,6 @@ class linkedList:
             return 
 
         self.length -= 1
-
         node = self.head
         prevNode = node
 
