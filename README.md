@@ -17,5 +17,5 @@ radix sort, counting sort
 ### data structures
 skiplist, BST, scapegoat tree, heap, red-black tree
 
-#### general graph stuff
+#### graph traversal
 BFS, DFS
