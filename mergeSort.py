@@ -1,6 +1,4 @@
 from typing import List
-
-
 from random import randint
 
 def mergeSort(fullList: List):
@@ -31,7 +29,7 @@ def merge(firstHalf: list, secondHalf: List, fullList: List):
 
 
 if __name__ == '__main__':
-    myList = [randint(1,10) for x in range(10)]
+    myList = [randint(1,10) for x in range(11)]
     print(myList)
     mergeSort(myList)
     print(myList)
