@@ -108,23 +108,74 @@ class linkedList:
         prevNode.next = node.next
         return node.value
 
+    def getHead(self):
+        return self.head
+
+
+
+def merge(node1: Node, node2: Node) -> Node:
+    if node1.value <= node2.value:
+        returnHead = node1
+        node1 = node1.next
+    else:
+        returnHead = node2
+        node2 = node2.next
+    currentNode = returnHead
+
+    while node1 is not None and node2 is not None:
+        if node1.value <= node2.value:
+            currentNode.next = node1
+            currentNode = node1
+            node1 = node1.next
+        else:
+            currentNode.next = node2
+            currentNode = node2
+            node2 = node2.next
+    if node1 is not None:
+        currentNode.next = node1
+    elif node2 is not None:
+        currentNode.next = node2
+    while returnHead is not None:
+        print(returnHead.value, end=" -> ")
+        returnHead = returnHead.next
+
+    print("End")
+    return
+    
+#redundant, was just done in merge()
+def mergeHelper(node1: Node, node2: Node, currentNode: Node) -> Node:
+    if node1.value <= node2.value:
+        currentNode = node1
+        node1 = node1.next
+    else:
+        currentNode = node2
+        node2 = node2.next
+    return currentNode
 
 
 if __name__ == '__main__':
+    from random import randint
+    llist1 = linkedList()
+    llist2 = linkedList()
+    nextItem = 0
+    
+    for x in range(1,10):
+        prevItem = nextItem
+        nextItem += randint(0,2)
+        llist1.push(nextItem)
+    
+    nextItem = 0
 
-    llist = linkedList()
-    for x in range(10):
-       llist.push(x)
-    print(llist)
-    print("llist.pop()")
-    llist.pop()
-    print(llist)
-    print("llist.insert(9,10)")
-    llist.insert(9,10)
-    print(llist)
-    print("llist.remove(9)")
-    llist.remove(9)
-    print(llist)
-    print("llist.push(10)")
-    llist.push(10)
-    print(llist)
+    for x in range(randint(1,10)):
+        prevItem = nextItem
+        nextItem += randint(0,2)
+        llist2.push(nextItem)
+       
+    print(llist1)
+    print(llist2)
+    node1 = llist1.getHead()
+    node2 = llist2.getHead()
+    merged = merge(node1,node2)
+    while merged is not None:
+        print(merged.value)
+        merged = merged.next
