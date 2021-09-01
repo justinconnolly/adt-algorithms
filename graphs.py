@@ -8,6 +8,7 @@ class Graph:
             nodeList[len(nodeList) - 1].addOut(edge)
 
 # really need to decide how nodes will be referenced -- they probably don't need values for this graph (DFS/BFS), they can be referenced using their position in the graph array
+#just use an adjacency list
 class Node:
     def __init__(self, value: int):
         self.outEdges = []
