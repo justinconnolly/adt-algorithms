@@ -26,7 +26,7 @@ if __name__ == '__main__':
         outList = list(range(0,len(nodeList)))
         outList.remove(index)
 
-        # this can be simplified with random.choice()
+        # this can be simplified with random.sample()
         for i in range(randint(0,len(nodeList))):
             temp = randint(0,len(outList)-1)
             if temp > 0:
