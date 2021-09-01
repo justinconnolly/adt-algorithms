@@ -151,6 +151,10 @@ def mergeHelper(node1: Node, node2: Node, currentNode: Node) -> Node:
     return currentNode
 
 
+def reverse(head: Node):
+    pass
+
+
 if __name__ == '__main__':
     from random import randint
     llist1 = linkedList()
