@@ -2,18 +2,21 @@ class Graph:
     def __init__(self):
         self.nodeList = []
     
-    def addNode(self, value):
-        pass
+    def addNode(self, value: int, outEdges: list):
+        nodeList.append(Node(value))
+        for edge in outEdges:
+            nodeList[len(nodeList) - 1].addOut(edge)
 
+# really need to decide how nodes will be referenced -- they probably don't need values for this graph (DFS/BFS), they can be referenced using their position in the graph array
 class Node:
-    def __init__(self, value):
+    def __init__(self, value: int):
         self.outEdges = []
         self.value = value
 
-    def addOut(self, newNeighbour):
+    def addOut(self, newNeighbour: Node):
         self.outEdges.append(newNeighbour)
     
-    def removeOut(self, removedNode):
+    def removeOut(self, removedNode: Node):
         self.outEdges.remove(removedNode)
     
 if __name__ == '__main__':
