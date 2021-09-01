@@ -26,8 +26,9 @@ class linkedList:
         return " -> ".join(nodes)
 
     def push(self, value):
-        self.insert(0,value)
+        self.insert(self.length,value)
         return
+        self.length += 1
 
         if self.head is None:
             self.head = Node(value)
@@ -46,9 +47,8 @@ class linkedList:
         self.tail = newNode
 
     def pop(self):
-        self.remove(0)
+        self.remove(self.length - 1)
         return
-
         if self.length < 1:
             return "Linked List is empty"
 
@@ -99,13 +99,14 @@ class linkedList:
         if index == 0:
             self.head = node.next
             node.next = None
-            return
+            return node.value
 
         for i in range(index):
             prevNode = node
             node = node.next
 
         prevNode.next = node.next
+        return node.value
 
 
 
@@ -115,11 +116,15 @@ if __name__ == '__main__':
     for x in range(10):
        llist.push(x)
     print(llist)
+    print("llist.pop()")
     llist.pop()
     print(llist)
+    print("llist.insert(9,10)")
     llist.insert(9,10)
     print(llist)
+    print("llist.remove(9)")
     llist.remove(9)
     print(llist)
-    llist.push(100)
+    print("llist.push(10)")
+    llist.push(10)
     print(llist)
