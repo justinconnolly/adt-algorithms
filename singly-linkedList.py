@@ -135,12 +135,8 @@ def merge(node1: Node, node2: Node) -> Node:
         currentNode.next = node1
     elif node2 is not None:
         currentNode.next = node2
-    while returnHead is not None:
-        print(returnHead.value, end=" -> ")
-        returnHead = returnHead.next
 
-    print("End")
-    return
+    return returnHead
     
 #redundant, was just done in merge()
 def mergeHelper(node1: Node, node2: Node, currentNode: Node) -> Node:
@@ -177,5 +173,7 @@ if __name__ == '__main__':
     node2 = llist2.getHead()
     merged = merge(node1,node2)
     while merged is not None:
-        print(merged.value)
+        print(merged.value, end=" -> ")
         merged = merged.next
+
+    print("End")
