@@ -120,6 +120,7 @@ def merge(node1: Node, node2: Node) -> Node:
     else:
         returnHead = node2
         node2 = node2.next
+        
     currentNode = returnHead
 
     while node1 is not None and node2 is not None:
@@ -131,6 +132,7 @@ def merge(node1: Node, node2: Node) -> Node:
             currentNode.next = node2
             currentNode = node2
             node2 = node2.next
+
     if node1 is not None:
         currentNode.next = node1
     elif node2 is not None:
