@@ -7,7 +7,7 @@ Implementing some ADT/Algo in Python as practice and prep for TAing COMP2402
 merge sort, quick sort
 
 ### data structures
-singly linked list
+singly linked list (plus merging two sorted lists)
 
 ## todo
 
