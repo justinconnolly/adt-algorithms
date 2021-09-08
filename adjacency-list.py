@@ -10,7 +10,8 @@ def make_list(size: int):
         aList.append(outEdges)
     return aList
 
-def bfs(start: int, target: int, graph: list):
+#BFS to get distance between nodes
+def distance(start: int, target: int, graph: list):
     seen = [False] * len(graph)
     queue = []
     queue.append(start)
@@ -35,4 +36,4 @@ def bfs(start: int, target: int, graph: list):
 if __name__ == '__main__':
     adj_list = make_list(5)
     print(adj_list)
-    print(bfs(0,1,adj_list))
+    print(distance(0,1,adj_list))
