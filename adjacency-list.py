@@ -12,6 +12,8 @@ def make_list(size: int):
 
 #BFS to get distance between nodes
 def distance(start: int, target: int, graph: list):
+    if start == target:
+        return "Origin and target are the same node"
     seen = [False] * len(graph)
     queue = []
     queue.append(start)
