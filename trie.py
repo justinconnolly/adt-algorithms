@@ -52,14 +52,3 @@ class Trie:
                 return False
         return True
 
-if __name__ == "__main__":
-    x = Trie()
-    print(x.root.children)
-    x.add("yes")
-    x.add("cisco")
-    print(x.root.children)
-    print(x.contains("yes"))
-    print(x.containsPrefix("ye"))
-    print(x.contains("cis"))
-    print(x.add(""))
-    print(x.contains(""))
