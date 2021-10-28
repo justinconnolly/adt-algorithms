@@ -111,7 +111,7 @@ if __name__ == "__main__":
         print(f"{added}: {i}")
 
     x.inOrder(x.root)
-    print(x.contains(0))
+    print()
     x.preOrder(x.root)
     print()
     x.postOrder(x.root)
