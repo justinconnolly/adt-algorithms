@@ -108,7 +108,7 @@ class BST:
         return curr
 
 
-    # this needs to be redone -- the conditionals don't work for 2 child nodes
+    # this needs to be entirely redone -- the conditionals don't work for 2 child nodes
     def chop(self, child, parent):
         if child.value < parent.value:
             if child.left is None and child.right is None:
@@ -127,8 +127,6 @@ class BST:
                 # child.parent.left = child
                 # child.
                 replacement = self.findMin(child)
-                print(replacement)
-                print("ELSE")
                 
 
         else:
@@ -145,10 +143,6 @@ class BST:
                     parent.right.parent = parent
             else:
                 replacement = self.findMin(child)
-                print(replacement)
-                print("ELSE")
-            print("BOOP")
-
                 
 
     # this could be MUCH more elegant and less repetitive with a helper
