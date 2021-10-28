@@ -50,8 +50,11 @@ class BST:
                 return False
         if value < parent.value:
             parent.left = self.Node(value)
+            parent.left.parent = parent
         else:
             parent.right = self.Node(value)
+            parent.right.parent = parent
+        
         return True
 
 
@@ -75,9 +78,26 @@ class BST:
             return parent.left is None
         if value > parent.value:
             return not parent.right is None
-        
-        
-        
+
+    def BFS(self, value):
+        distance = -1
+        if self.root.value == value:
+            return distance + 1
+        seen = set()
+        queue = []
+        queue.append(self.root)
+        while len(queue) > 0:
+            i = queue.pop(0)
+            if i is not None and not seen.add(i.right):
+                queue.append(i.right)
+            if i is not None and not seen.add(i.left):
+                queue.append(i.left)
+            if i is not None and i.value == value:
+                break
+        while i is not None:
+            distance += 1
+            i = i.parent
+        return distance
 
 
     
@@ -97,4 +117,6 @@ if __name__ == "__main__":
     x.postOrder(x.root)
     print()
     x.preOrder(x.root)
+    print()
+    print(x.BFS(7))
         
