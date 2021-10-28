@@ -62,13 +62,14 @@ class BST:
         curr = self.root
         if curr.value == value:
             return curr
-        while curr is not None:
+        while curr is not None and curr.value != value:
             parent = curr
             if value < curr.value:
                 curr = curr.left
             else:
                 curr = curr.right
         return parent
+
 
     def contains(self, value) -> bool:
         parent = self.findPred(value)
@@ -100,6 +101,74 @@ class BST:
         return distance
 
 
+    def findMin(self, node) -> Node:
+        curr = node
+        while curr is not None and curr.left is not None:
+            curr = curr.left
+        return curr
+
+
+    # this needs to be redone -- the conditionals don't work for 2 child nodes
+    def chop(self, child, parent):
+        if child.value < parent.value:
+            if child.left is None and child.right is None:
+                parent.left = None
+                child.parent = None
+
+            elif child.left is not None or child.right is not None:
+                if child.right is not None:
+                    parent.left = child.right
+                    parent.left.parent = parent
+                else:
+                    parent.left = child.left
+                    parent.left.parent = parent
+            else:
+                # child.parent = parent.parent
+                # child.parent.left = child
+                # child.
+                replacement = self.findMin(child)
+                print(replacement)
+                print("ELSE")
+                
+
+        else:
+            if child.left is None and child.right is None:
+                parent.right = None
+                child.parent = None
+
+            elif child.left is not None or child.right is not None:
+                if child.right is not None:
+                    parent.right = child.right
+                    parent.right.parent = parent
+                else:
+                    parent.right = child.right
+                    parent.right.parent = parent
+            else:
+                replacement = self.findMin(child)
+                print(replacement)
+                print("ELSE")
+            print("BOOP")
+
+                
+
+    # this could be MUCH more elegant and less repetitive with a helper
+    def delete(self, value):
+        if self.contains(value):
+            parent = self.findPred(value)
+            if value < parent.value:
+                node = parent.left
+                if node.left is None and node.right is None:
+                    parent.left = None
+            else:
+                node = parent.right
+                if node.left is None and node.right is None:
+                    parent.right = None
+                
+                
+
+
+
+
     
 if __name__ == "__main__":
     from random import randint
@@ -116,7 +185,18 @@ if __name__ == "__main__":
     print()
     x.postOrder(x.root)
     print()
-    x.preOrder(x.root)
-    print()
-    print(x.BFS(7))
-        
+    # print(x.BFS(7))
+
+    two = x.findPred(2).right
+    three = x.findPred(3).right
+    print(three)
+    four = x.findPred(4).right
+    print(four)
+    # x.chop(four, three)
+    x.chop(three, two)
+
+    x.inOrder(x.root)
+    zero = x.findMin(x.root.right)
+    print(zero)
+
+    x.chop(x.root.right,x.root)
