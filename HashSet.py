@@ -39,7 +39,7 @@ class HashSet:
 
 if __name__ == "__main__":
     from random import randint
-    x = HashMap()
+    x = HashSet()
     for i in range(20):
         x.add(round(randint(1,50) * 1.22,1))
     print(x)
