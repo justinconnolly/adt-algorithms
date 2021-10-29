@@ -15,7 +15,7 @@ BFS
 ## todo
 
 ### sorting algorithms
-radix sort, counting sort
+radix sort, counting sort, heap sort
 
 ### data structures
 skiplist, scapegoat tree, heap, red-black tree
