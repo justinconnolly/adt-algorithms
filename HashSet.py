@@ -1,3 +1,7 @@
+"""
+Need a balance() method for the a linked list gets too large/small (ie maybe 2n or n/3).
+"""
+
 import singlyLinkedList
 
 class HashSet:
