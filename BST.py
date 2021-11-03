@@ -194,23 +194,98 @@ class BST:
         seen[self.root.value] = str(self.root.value)
         while stack:
             i = stack.pop()
-            if i.left and i.left.value not in seen:
+            if i.left and i.left not in seen:
                 seen[i.left.value] = seen[i.value] + str(i.left.value)
                 stack.append(i.left)
-            if i.right and i.right.value not in seen:
+            if i.right and i.right not in seen:
                 seen[i.right.value] = seen[i.value] + str(i.right.value)
                 stack.append(i.right)
             if not i.left and not i.right:
                 sum.append(seen[i.value])
         for key in seen.keys():
-            print(f"{key}: {seen[key]}")
+            print(f"{key.value}: {seen[key]}")
         retSum = 0
         for num in sum:
             retSum += int(num)
         return retSum
 
+    def traverse2(self):
+        path = [None]#[self.root]
+        prev = None
+        curr = self.root
+        sumList = []
+        # visited = []
+        seen = {}
+        while curr:
+            print(curr.value)
+            if not curr.left and not curr.right:
+                sumList.append(path)
+            if prev is path[len(path) - 1]:
+                path.append(curr)
+            if curr.left and prev is not curr.left:
+                prev = curr
+                curr = curr.left
+            elif curr.right and prev is not curr.right:
+                prev = curr
+                curr = curr.right
+            else:
+                curr = prev
+        print(path)
+        path.pop(0)
+        import functools
+        print(functools.reduce(lambda a, b: str(a) + str(b), [x.value for x in path]))
+        print(sumList)
 
-            
+
+    def traverseAndLeetcodeOneTwoNine(self):
+        curr = self.root
+        prev = None
+        next = None
+        path = [None]
+        leafSum = []
+        while curr:
+            if prev is path[len(path) - 1]:
+                if curr.left:
+                    next = curr.left
+                    path.append(curr)
+                elif curr.right:
+                    next = curr.right
+                    path.append(curr)
+                else:
+                    leafSum.append(path[1:])
+                    leafSum[len(leafSum) - 1].append(curr.value)
+                    # print(f"Path: {path}")
+                    # print(f"Leaf! {curr.value}")
+                    next = path.pop()
+            elif curr.left and prev is curr.left:
+                if curr.right:
+                    next = curr.right
+                    path.append(curr)
+                else:
+                    next = path.pop()
+            else:
+                next = path.pop()
+            prev = curr
+            curr = next
+        # print(leafSum)
+        # import functools
+        # print(functools.reduce(lambda a, b: str(a) + str(b), [x.value for x in y]) for y in leafSum)
+
+        sum = 0
+        eq = ""
+        for valList in leafSum:
+            strSum = ""
+            for value in valList:
+                strSum += str(value)
+            sum += int(strSum)
+            eq += strSum + " + "
+        #     print(strSum)
+        eq = eq[:-3]
+        eq += " = " + str(sum)
+        print(eq)
+        return sum
+
+
 
 
 
@@ -230,23 +305,11 @@ if __name__ == "__main__":
     # print()
     # x.postOrder(x.root)
     # print()
-    # # print(x.BFS(7))
-
-    # two = x.findPred(2).right
-    # three = x.findPred(3).right
-    # print(three)
-    # four = x.findPred(4).right
-    # print(four)
-    # # x.chop(four, three)
-    # x.chop(three, two)
-
-    # x.inOrder(x.root)
-    # zero = x.findMin(x.root.right)
-    # print(zero)
-
-    # x.chop(x.root.right,x.root)
 
     x = BST()
-    x.setup(10)
-    x.inOrder()
-    x.leafsum()
+    x.add(5)
+    x.add(2)
+    x.add(3)
+    x.add(1)
+    x.add(6)
+    x.traverseAndLeetcodeOneTwoNine()
