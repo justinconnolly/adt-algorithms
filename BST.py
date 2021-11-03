@@ -8,34 +8,48 @@ class BST:
         
         def __repr__(self):
             return f"{self.value}"
-
+    root = None
     def __init__(self):
         self.root = None
         self.size = 0
 
     def __repr__(self):
-        pass
+        if not self.root:
+            return "Empty"
+        return f"{self.root.value}"
 
-    def inOrder(self, node):
+    def inOrderHelper(self, node: Node):
         if node is not None:
-            self.inOrder(node.left)
+            self.inOrderHelper(node.left)
             print(node, end=", ")
-            self.inOrder(node.right)
+            self.inOrderHelper(node.right)
 
-    def preOrder(self, node):
-        if node is not None:
-            print(node, end=", ")
-            self.inOrder(node.left)
-            self.inOrder(node.right)
+    def inOrder(self):
+        self.inOrderHelper(self.root)
+        print("End")
 
-    def postOrder(self, node):
+    def preOrderHelper(self, node: Node):
         if node is not None:
-            self.inOrder(node.left)
-            self.inOrder(node.right)
             print(node, end=", ")
+            self.preOrderHelper(node.left)
+            self.preOrderHelper(node.right)
+
+    def preOrder(self):
+        self.preOrderHelper(self.root)
+        print("End")
+
+    def postOrderHelper(self, node: Node):
+        if node is not None:
+            self.postOrderHelper(node.left)
+            self.postOrderHelper(node.right)
+            print(node, end=", ")
+
+    def postOrder(self):
+        self.postOrderHelper(self.root)
+        print("End")
     
 
-    def add(self, value) -> bool:
+    def add(self, value: int) -> bool:
         if self.root is None:
             self.root = self.Node(value)
             return True
@@ -58,7 +72,7 @@ class BST:
         return True
 
 
-    def findPred(self, value) -> Node:
+    def findPred(self, value: int) -> Node:
         curr = self.root
         if curr.value == value:
             return curr
@@ -71,7 +85,7 @@ class BST:
         return parent
 
 
-    def contains(self, value) -> bool:
+    def contains(self, value: int) -> bool:
         parent = self.findPred(value)
         if parent.value == value:
             return True
@@ -80,7 +94,7 @@ class BST:
         if value > parent.value:
             return not parent.right is None
 
-    def BFS(self, value):
+    def BFS(self, value: int):
         distance = -1
         if self.root.value == value:
             return distance + 1
@@ -101,15 +115,21 @@ class BST:
         return distance
 
 
-    def findMin(self, node) -> Node:
+    def findMin(self, node: Node) -> Node:
         curr = node
-        while curr is not None and curr.left is not None:
+        while curr.left is not None:
             curr = curr.left
+        return curr
+
+    def findMax(self, node: Node) -> Node:
+        curr = node
+        while curr.right is not None:
+            curr = curr.right
         return curr
 
 
     # this needs to be entirely redone -- the conditionals don't work for 2 child nodes
-    def chop(self, child, parent):
+    def chop(self, child: Node, parent: Node):
         if child.value < parent.value:
             if child.left is None and child.right is None:
                 parent.left = None
@@ -146,7 +166,7 @@ class BST:
                 
 
     # this could be MUCH more elegant and less repetitive with a helper
-    def delete(self, value):
+    def delete(self, value: int):
         if self.contains(value):
             parent = self.findPred(value)
             if value < parent.value:
@@ -158,39 +178,75 @@ class BST:
                 if node.left is None and node.right is None:
                     parent.right = None
                 
-                
+    
+    def setup(self, num):
+        from random import randint
+        collection = [randint(1,30) for x in range(randint(10, 20))]
+        for i in collection:
+            self.add(collection.pop())
 
+    # Each leaf is a string sum of the nodes leading from the root to the leaf. Sum all of the leaves.
+    def leafStrSum(self):
+        curr = self.root
+        seen = {}
+        stack = [curr]
+        sum = []
+        seen[self.root.value] = str(self.root.value)
+        while stack:
+            i = stack.pop()
+            if i.left and i.left.value not in seen:
+                seen[i.left.value] = seen[i.value] + str(i.left.value)
+                stack.append(i.left)
+            if i.right and i.right.value not in seen:
+                seen[i.right.value] = seen[i.value] + str(i.right.value)
+                stack.append(i.right)
+            if not i.left and not i.right:
+                sum.append(seen[i.value])
+        for key in seen.keys():
+            print(f"{key}: {seen[key]}")
+        retSum = 0
+        for num in sum:
+            retSum += int(num)
+        return retSum
+
+
+            
 
 
 
     
 if __name__ == "__main__":
-    from random import randint
+    # from random import randint
+    # x = BST()
+
+    # x.add(5)
+    # for i in range(10):
+    #     added = x.add(i)
+    #     print(f"{added}: {i}")
+
+    # x.inOrder(x.root)
+    # print()
+    # x.preOrder(x.root)
+    # print()
+    # x.postOrder(x.root)
+    # print()
+    # # print(x.BFS(7))
+
+    # two = x.findPred(2).right
+    # three = x.findPred(3).right
+    # print(three)
+    # four = x.findPred(4).right
+    # print(four)
+    # # x.chop(four, three)
+    # x.chop(three, two)
+
+    # x.inOrder(x.root)
+    # zero = x.findMin(x.root.right)
+    # print(zero)
+
+    # x.chop(x.root.right,x.root)
+
     x = BST()
-
-    x.add(5)
-    for i in range(10):
-        added = x.add(i)
-        print(f"{added}: {i}")
-
-    x.inOrder(x.root)
-    print()
-    x.preOrder(x.root)
-    print()
-    x.postOrder(x.root)
-    print()
-    # print(x.BFS(7))
-
-    two = x.findPred(2).right
-    three = x.findPred(3).right
-    print(three)
-    four = x.findPred(4).right
-    print(four)
-    # x.chop(four, three)
-    x.chop(three, two)
-
-    x.inOrder(x.root)
-    zero = x.findMin(x.root.right)
-    print(zero)
-
-    x.chop(x.root.right,x.root)
+    x.setup(10)
+    x.inOrder()
+    x.leafsum()
