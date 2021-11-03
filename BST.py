@@ -185,7 +185,7 @@ class BST:
         for i in collection:
             self.add(collection.pop())
 
-    # Each leaf is a string sum of the nodes leading from the root to the leaf. Sum all of the leaves.
+    # Each leaf is a string sum of the nodes leading from the root to the leaf. Sum all of the leaves -- only works for sets
     def leafStrSum(self):
         curr = self.root
         seen = {}
@@ -236,7 +236,7 @@ class BST:
         print(functools.reduce(lambda a, b: str(a) + str(b), [x.value for x in path]))
         print(sumList)
 
-
+    #same as  leafStrSum() above, but works for all trees
     def traverseAndLeetcodeOneTwoNine(self):
         curr = self.root
         prev = None
