@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # adt-algorithms
 Implementing some ADT/Algo in Python as practice and prep for TAing COMP2402
 
@@ -45,4 +44,3 @@ skiplist, scapegoat tree, heap, red-black tree
 
 #### graph traversal
 DFS
->>>>>>> refs/remotes/origin/main
