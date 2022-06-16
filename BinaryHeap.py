@@ -49,6 +49,7 @@ class BinaryHeap():
                 self.a[j] = self.a[i]
                 self.a[i] = k
             i = j
+            
 x = BinaryHeap()
 print(x.parent(6))
 x.add(5)
