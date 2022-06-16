@@ -9,7 +9,6 @@ class DoublyLinkedList:
         def __str__(self):
             return str(self.value)
 
-    
     def __init__(self):
         self.length = 0
         self.dummy = self.Node()
@@ -58,17 +57,6 @@ class DoublyLinkedList:
             # self.addBefore(self.dummy, value)
             # return
         self.addBefore(self.getNode(i), value)
-    
-
-
-    def addFirst(self, value):
-        # self.addBefore(self.dummy, value)
-        newNode = self.Node(value)
-        self.dummy.next = newNode
-        self.dummy.prev = newNode
-        newNode.next = self.dummy
-        newNode.prev = self.dummy
-        self.length += 1
 
     def removeNode(self, node):
         node.prev.next = node.next
