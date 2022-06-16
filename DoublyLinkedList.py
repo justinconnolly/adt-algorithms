@@ -16,25 +16,25 @@ class DoublyLinkedList:
         self.dummy.prev = self.dummy
 
     def getNode(self, i):
-        p = None
+        node = None
         if (i < self.length / 2):
-            p = self.dummy.next
+            node = self.dummy.next
             for j in range(i):
-                p = p.next
+                node = node.next
         else:
-            p = self.dummy
+            node = self.dummy
             for j in range(i,0,-1):
-                p = p.prev
-        return p
+                node = node.prev
+        return node
 
     def get(self, i):
         return self.getNode(i)
 
-    def set(self, i, x):
-        u = self.getNode(i)
-        y = u.value
-        u.value = x
-        return y
+    def set(self, i, val):
+        node = self.getNode(i)
+        val = node.value
+        node.value = val
+        return val
 
     def addBefore(self, node, value):
         newNode = self.Node(value)
@@ -64,9 +64,9 @@ class DoublyLinkedList:
         self.length -= 1
 
     def remove(self, i):
-        w = self.getNode(i)
-        self.removeNode(w)
-        return w.value
+        node = self.getNode(i)
+        self.removeNode(node)
+        return node.value
 
     def print(self):
         node = self.dummy.next
@@ -78,3 +78,11 @@ class DoublyLinkedList:
             node = node.next
         nodes.append("End")
         print(" -> ".join(nodes))
+
+if __name__ == "__main__":
+    dll = DoublyLinkedList()
+    for i in range(10):
+        dll.add(i)
+    dll.print()
+    dll.set(2,20)
+    dll.print()
