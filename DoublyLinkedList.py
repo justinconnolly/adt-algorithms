@@ -78,11 +78,3 @@ class DoublyLinkedList:
             node = node.next
         nodes.append("End")
         print(" -> ".join(nodes))
-
-if __name__ == "__main__":
-    dll = DoublyLinkedList()
-    for i in range(10):
-        dll.add(i)
-    dll.print()
-    dll.set(2,20)
-    dll.print()
