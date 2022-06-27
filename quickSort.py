@@ -15,15 +15,11 @@ def quickSort(myList: list, start: int, end: int):
     while j < q:
         if myList[j] < pivot:
             p += 1
-            temp = myList[j]
-            myList[j] = myList[p]
-            myList[p] = temp
+            myList[j], myList[p] = myList[p], myList[j]
             j += 1
         elif myList[j] > pivot:
             q -= 1
-            temp = myList[j]
-            myList[j] = myList[q]
-            myList[q] = temp
+            myList[j], myList[q] = myList[q], myList[j]
         else:
             j += 1
             
