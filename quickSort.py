@@ -1,7 +1,7 @@
 from random import randint
 
-# iterative random quicksort
-def it_quick_sort(a: int):
+# recursive random quicksort
+def random_re_quick_sort(a: int):
     quickSort(a,0,len(a))
 
 def quickSort(myList: list, start: int, end: int):
@@ -63,12 +63,36 @@ def randomized_quick_sort(A, p, r):
         randomized_quick_sort(A, p, q - 1)
         randomized_quick_sort(A, q + 1, r)
 
+
+def hoare_quicksort(A, left, right):
+    if left < right:
+        p = hoare_partition(A, left, right)
+        hoare_quicksort(A, left, p)
+        hoare_quicksort(A, p + 1, right)
+
+def hoare_partition(A, left, right):
+    pivot = A[randint(left, right)]
+    i = left - 1
+    j = right + 1
+    while True:
+        i += 1
+        while A[i] < pivot:
+            i += 1
+        j -= 1
+        while A[j] > pivot:
+            j -= 1
+        if i >= j:
+            return j
+        A[i], A[j] = A[j], A[i]
+        
     
 if __name__ == '__main__':
-    size = input("Enter the size of the list to sort: ")
+    # size = input("Enter the size of the list to sort: ")
+    size = 15
     myList = [randint(1,int(size)) for x in range(int(size))]
     print(myList)
-    randomized_QS(myList)
+    # randomized_QS(myList)
+    hoare_quicksort(myList, 0, len(myList) - 1)
     print(myList)
     for index, value in enumerate(myList):
         if  index > 0 and value < myList[index - 1]:
