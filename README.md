@@ -1,6 +1,8 @@
 # adt-algorithms
 Implementing some ADT/Algo in Python as practice and prep for TAing COMP2402
 
+Much of this has been replace my the [graph-algorithms repo](https://github.com/justinconnolly/graph-algorithms).
+
 ## implemented
 
 ### sorting algorithms
