@@ -1,6 +1,3 @@
-from __future__ import annotations
-from typing import Optional
-
 class BST:
     class Node:
         def __init__(self, val: int, parent=None,left=None,right=None):
@@ -80,13 +77,23 @@ class BST:
             return 1 + self.count_nodes_one_child(curr.left if curr.left else curr.right)
         return self.count_nodes_one_child(curr.left) + self.count_nodes_one_child(curr.right)
     
+    def print_tree(self):
+        tree = []
+        self.print_tree_from_node(self.root, tree)
+        for line in tree:
+            print(line)
+        # print(tree)
+
+    def print_tree_from_node(self, node, tree, padding=''):
+        if node:
+            tree.append(f'{padding}{node.val}')
+            self.print_tree_from_node(node.left, tree, padding + '   ')
+            self.print_tree_from_node(node.right, tree, padding + '   ')
 
 
-if __name__ == "__main__":
-    from random import shuffle
+def count_nodes_one_child(runs):
     sum = 0
-    runs = 1000
-    for i in range(runs):
+    for _ in range(runs):
         myt = BST()
         elements = [x for x in range(runs)]
         shuffle(elements)
@@ -94,4 +101,17 @@ if __name__ == "__main__":
             myt.insert(j)
         one_child_nodes = myt.count_nodes_one_child(myt.root)
         sum += one_child_nodes / runs
-    print(sum/(runs))
+    print(f'{sum/(runs):.5}')
+
+
+if __name__ == "__main__":
+    from random import shuffle
+    runs = 1000
+    count_nodes_one_child(runs)
+    myt = BST()
+    elements = [x for x in range(10)]
+    shuffle(elements)
+    elements = [5,2,3,8,4,9,7,1,6]
+    for i in elements:
+        myt.insert(i)
+    myt.print_tree()
