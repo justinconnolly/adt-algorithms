@@ -85,12 +85,13 @@ class BST:
 if __name__ == "__main__":
     from random import shuffle
     sum = 0
-    for i in range(1000):
+    runs = 1000
+    for i in range(runs):
         myt = BST()
-        elements = [x for x in range(1000)]
+        elements = [x for x in range(runs)]
         shuffle(elements)
         for j in elements:
             myt.insert(j)
         one_child_nodes = myt.count_nodes_one_child(myt.root)
-        sum += one_child_nodes
-    print(sum/100)
+        sum += one_child_nodes / runs
+    print(sum/(runs))
